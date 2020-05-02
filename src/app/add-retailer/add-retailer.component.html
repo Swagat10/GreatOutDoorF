@@ -1,1 +1,74 @@
-<p>add-retailer works!</p>
+<h3>Add Retailer</h3>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  <div class="col-sm-4" >  
+    <div [hidden]="submitted" style="width: 400px;">  
+      <form [formGroup]="retailersaveform" #saveretailer (ngSubmit)="saveRetailer(saveRetailer)">  
+          <div class="form-group">  
+              <label for="name">Retailer Name</label>  
+              <input type="text" class="form-control"  formControlName="retailer_name" data-toggle="tooltip"   
+                 data-placement="right" title="Enter Retailer Name" >  
+              <div class="alert alert-danger" *ngIf = "(RetailerName.touched) && (RetailerName.invalid)"   
+                style="margin-top: 5px;">  
+                  <span *ngIf="RetailerName.errors.required">Retailer Name is Required</span>  
+                    <span *ngIf = "RetailerName.errors.minlength">   
+                        MaxLength Error   
+                    </span>                     
+                </div>  
+          </div>  
+    
+          <div class="form-group">  
+              <label for="name">Student Id</label>  
+              <input type="text" class="form-control"  formControlName="retailer_name" data-toggle="tooltip"   
+                 data-placement="right" title="Enter Retailer Name" >  
+              <div class="alert alert-danger" *ngIf = "(RetailerName.touched) && (RetailerName.invalid)"   
+                style="margin-top: 5px;">  
+                  <span *ngIf="RetailerName.errors.required">Retailer Name is Required</span>  
+                    <span *ngIf = "RetailerName.errors.minlength">   
+                        MinLength Error                  
+                </div>  
+          </div>  
+    
+          <div class="form-group">  
+              <label for="buildingNo">BuildingNo</label>  
+              <input type="text" class="form-control"  formControlName="buildingNo" data-toggle="tooltip"   
+              data-placement="right" title="Enter BuildingNo" >
+          </div>
+          <div class="form-group">  
+              <label for="city">BuildingNo</label>  
+                <input type="text" class="form-control"  formControlName="city" data-toggle="tooltip"   
+                data-placement="right" title="Enter City" >
+          </div>  
+          <div class="form-group">  
+              <label for="state">BuildingNo</label>  
+                <input type="text" class="form-control"  formControlName="state" data-toggle="tooltip"   
+                data-placement="right" title="Enter State" >
+          </div>  
+          <div class="form-group">  
+            <label for="field">BuildingNo</label>  
+            <input type="text" class="form-control"  formControlName="field" data-toggle="tooltip"   
+            data-placement="right" title="Enter Field" >
+          </div>  
+          <div class="form-group">  
+            <label for="zip">BuildingNo</label>  
+            <input type="text" class="form-control"  formControlName="zip" data-toggle="tooltip"   
+            data-placement="right" title="Enter Zip" >
+          </div>  
+
+    
+          <button type="submit" class="btn btn-success">Submit</button>  
+      </form>  
+  </div>  
+  </div>  
+  <div class="col-sm-4"></div>  
+</div>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  <div class="col-sm-4">  
+      <div [hidden]="!submitted">  
+         <h4>Retailer added successFully.</h4>  
+         <button (click)="addRetailerForm()" class='btn btn-primary'>Add More Retailer</button>  
+      </div>        
+  </div>  
+  <div class="col-sm-4"></div>  
+</div>

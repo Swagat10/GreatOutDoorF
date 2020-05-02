@@ -1,1 +1,114 @@
-<p>retailer-list works!</p>
+<div class="panel panel-default">  
+    <div class="panel-heading">  
+        <h1 style="text-align: center">Retailers</h1><br>  
+        <div class="row" [hidden]="!deleteMessage">  
+               
+                  <div class="col-sm-4"></div>  
+                  <div class="col-sm-4">  
+                          <div class="alert alert-info alert-dismissible">  
+                                  <button type="button" class="close" data-dismiss="alert">×</button>  
+                                  <strong>Retailer Data Removed</strong>  
+                          </div>  
+                  </div>  
+                  <div class="col-sm-4"></div>  
+          </div>             
+      </div>  
+    
+      
+    <div class="panel-body">  
+        <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"  
+        [dtTrigger]="dtTrigger"  >  
+            <thead class="thead-light">  
+                <tr>  
+                    <th>Retailer Name</th>  
+                    <th>Retailer Email</th>  
+                    <th>Building No</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Field</th>
+                    <th>Zip</th>   
+                    <th>Action</th>  
+                      
+                </tr>  
+            </thead>  
+            <tbody>  
+                 <tr *ngFor="let retailer of retailers ">  
+                    <td>{{retailer.retailer_name}}</td>  
+                    <td>{{retailer.retailer_id}}</td>  
+                    <td>{{retailer.buildingNo}}</td> 
+                    <td>{{retailer.city}}</td> 
+                    <td>{{retailer.state}}</td> 
+                    <td>{{retailer.field}}</td> 
+                    <td>{{retailer.zip}}</td>  
+                    <td><button (click)="removeRetailer(retailer.retailer_id)" class='btn btn-primary'><i class="fa fa-futboll-0">Removed</i></button>   
+                      <button (click)="updateRetailer(retailer.retailer_id)" class='btn btn-info'  
+                      data-toggle="modal" data-target="#myModal">Update</button>  
+                    </td>  
+                  </tr>   
+            </tbody><br>  
+        </table>  
+    </div>  
+  </div>   
+    
+  <div class="modal" id="myModal">  
+          <div class="modal-dialog">  
+            <div class="modal-content">  
+                  <form [formGroup]="retailerupdateform" #updret (ngSubmit)="updateRet(updret)">  
+              <!-- Modal Header -->  
+              <div class="modal-header">  
+                <h4 class="modal-title" style="text-align: center">Update Retailer</h4>  
+                  
+              </div>  
+                
+              <!-- Modal body -->  
+              <div class="modal-body" *ngFor="let retailer of retailerlist " >  
+                  <div [hidden]="isupdated">  
+    
+                      <input type="hidden" class="form-control"  formControlName="retailer_id" [(ngModel)]="retailer.retailer_id">  
+                              <div class="form-group">  
+                                  <label for="name">Retailer Name</label>  
+                                  <input type="text" class="form-control"  formControlName="retailer_name" [(ngModel)]="retailer.retailer_name"  >  
+                              </div>  
+                        
+                              <div class="form-group">  
+                                  <label for="name">BuildingNo</label>  
+                                  <input type="text" class="form-control" formControlName="buildingNo" [(ngModel)]="retailer.buildingNo">  
+                              </div>  
+                            
+                              <div class="form-group">  
+                                <label for="name">City</label>  
+                                <input type="text" class="form-control" formControlName="city" [(ngModel)]="retailer.city">  
+                              </div>
+                              
+                              <div class="form-group">  
+                                <label for="name">State</label>  
+                                <input type="text" class="form-control" formControlName="state" [(ngModel)]="retailer.state">  
+                            </div> 
+
+                            <div class="form-group">  
+                                <label for="name">Field</label>  
+                                <input type="text" class="form-control" formControlName="field" [(ngModel)]="retailer.field">  
+                            </div> 
+
+                            <div class="form-group">  
+                                <label for="name">Zip</label>  
+                                <input type="text" class="form-control" formControlName="zip [(ngModel)]="retailer.zip">  
+                            </div>                    
+                    </div>   
+
+                    <div [hidden]="!isupdated">  
+                        <h4>Retailer Detail Updated!</h4>  
+                    </div>          
+                        
+              </div>  
+                
+              <!-- Modal footer -->  
+              <div class="modal-footer" >  
+                <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>  
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>  
+              </div>  
+                
+          </form>  
+            </div>  
+          </div>  
+        </div>  
